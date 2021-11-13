@@ -1,20 +1,30 @@
-# Import socket module
 import socket
+import threading
+from time import sleep
 
-# Create a socket object
+
+class ReadMessageThread(threading.Thread):
+    def __init__(self,c, thread_name, thread_ID):
+        threading.Thread.__init__(self)
+        self.thread_name = thread_name
+        self.thread_ID = thread_ID
+        self.c=c
+
+        # helper function to execute the threads
+
+    def run(self):
+        while True:
+            print("by Server: ",s.recv(1024).decode())
+
 s = socket.socket()
 
-# Define the port on which you want to connect
-port = 777
+port = 779
 
-# connect to the server on local computer
 c=s.connect(('127.0.0.1', port))
-
-# receive data from the server and decoding to get the string.
 while True:
-    print(s.recv(1024).decode())
+    thread1 = ReadMessageThread(c, "One", 100)
+
+    thread1.start()
     message=input()
     s.send(message.encode())
-
-# close the connection
 s.close()
