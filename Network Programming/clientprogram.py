@@ -18,7 +18,7 @@ class ReadMessageThread(threading.Thread):
 
 s = socket.socket()
 
-port = 779
+port = 7789
 
 c=s.connect(('127.0.0.1', port))
 while True:
